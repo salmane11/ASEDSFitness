@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ASEDSFITNESS2</string>
     <string name="body_parts_chart_text">the hitted parts of your body in your last workout </string>
+    <string name="axercises_chart_text">total number of exercises per day</string>
 </resources>
