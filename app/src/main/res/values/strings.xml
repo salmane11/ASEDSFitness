@@ -2,4 +2,13 @@
     <string name="app_name">ASEDSFITNESS2</string>
     <string name="body_parts_chart_text">the hitted parts of your body in your last workout </string>
     <string name="axercises_chart_text">total number of exercises per day</string>
+    <string name="workouts_number">15</string>
+    <string name="exercises_number">65</string>
+    <string name="exercises_counter_text">total exercises</string>
+    <string name="workouts_counter_text">total workouts</string>
+    <string name="repititions_number">650</string>
+    <string name="repititions_counter_text">total repitions</string>
+    <string name="calories_number">50 000</string>
+    <string name="calories_counter_text">burned calories</string>
+
 </resources>
