@@ -14,7 +14,7 @@ public class tracking extends AppCompatActivity {
         setContentView(R.layout.activity_tracking);
         //textView = findViewById(R.id.textView11);
         //Intent intent = getIntent();
-       // ExerciseObject object = (ExerciseObject) intent.getSerializableExtra("ex");
+       // ExerciseObject object = (ExerciseObject) intent.getSerializableExtra("obj");
         //textView.setText(object.title);
     }
 }
