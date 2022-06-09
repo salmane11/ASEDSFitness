@@ -3,7 +3,9 @@ package ma.ac.inpt.asedsfitness2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,7 +16,10 @@ import com.anychart.anychart.Column3d;
 import com.anychart.anychart.DataEntry;
 import com.anychart.anychart.Pie;
 import com.anychart.anychart.ValueDataEntry;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,25 +36,22 @@ public class statistics extends AppCompatActivity {
 
     List<NewExercise> exercicesList=new ArrayList<NewExercise>();
     List<String>categories=new ArrayList<String>();
+    List<String>dates=new ArrayList<String>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
-
+        loadData();
         //date format
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         Calendar cal = Calendar.getInstance();
         Date date = cal.getTime();
         String todaysdate = dateFormat.format(date);
-        Date anotherDate=new Date() ;
 
-        Context context = getApplicationContext();
-        int duration = Toast.LENGTH_SHORT;
 
-        Toast toast = Toast.makeText(context, todaysdate, duration);
-        toast.show();
-        NewExercise firstExercise=new NewExercise("crunches","abs",20.00,20,3,date);
+        /**NewExercise firstExercise=new NewExercise("crunches","abs",20.00,20,3,date);
         NewExercise secondExercise=new NewExercise("bench press","chest",20.00,20,3,date);
         NewExercise thirdExercise=new NewExercise("squat","legs",20.00,20,3,date);
         NewExercise fourthExercise=new NewExercise("shoulders press","shoulder",20.00,20,3,date);
@@ -60,7 +62,7 @@ public class statistics extends AppCompatActivity {
         exercicesList.add(secondExercise);
         exercicesList.add(thirdExercise);
         exercicesList.add(fourthExercise);
-        exercicesList.add(fifthExercise);
+        exercicesList.add(fifthExercise);*/
 
         totalExercises=findViewById(R.id.exercises_number);
         totalRepititions=findViewById(R.id.repetitions_number);
@@ -78,25 +80,24 @@ public class statistics extends AppCompatActivity {
         for(int i=0;i<exercicesList.size();i++){
 
             //increment repitions counter
-            repitionsCounter+=exercicesList.get(i).getRepetitions();
+            repitionsCounter+=exercicesList.get(i).getRepetitions()*exercicesList.get(i).getSets();
 
             int counter=0;
             String category=exercicesList.get(i).getCategory();
-            if(categories.contains(category)){
-                break;
-            }
-            categories.add(category);
-            for(int j=0;j<exercicesList.size();j++){
-                if(exercicesList.get(j).getCategory().equals(category)){
-                    counter++;
+            if(!categories.contains(category)) {
+                categories.add(category);
+                for(int j=0;j<exercicesList.size();j++){
+                    if(exercicesList.get(j).getCategory().equals(category)){
+                        counter++;
+                    }
                 }
+                pieData.add(new ValueDataEntry(category, counter));
             }
-            pieData.add(new ValueDataEntry(category, counter));
         }
         //set repitionsCounter to total repitions text
         totalRepititions.setText(repitionsCounter+"");
         totalExercises.setText(exercicesList.size()+"");
-        totalCalories.setText(repitionsCounter*10+"");
+        totalCalories.setText(repitionsCounter*3.5+"");
 
         /**pieData.add(new ValueDataEntry("Chest", 2));
         pieData.add(new ValueDataEntry("Shoulders", 3));
@@ -121,12 +122,17 @@ public class statistics extends AppCompatActivity {
             int counter=0;
             Date exerciseDate=exercicesList.get(i).getExerciseDate();
             String exerciseDat = dateFormat.format(exerciseDate);
-            for(int j=0;j<exercicesList.size();j++){
-                if(dateFormat.format(exercicesList.get(j).getExerciseDate()).equals(exerciseDat)){
-                    counter++;
+            Log.d("date exercice :",exerciseDat);
+            if(!dates.contains(exerciseDat)){
+                dates.add(exerciseDat);
+                for(int j=0;j<exercicesList.size();j++){
+                    Log.d("date exercice :",dateFormat.format(exercicesList.get(j).getExerciseDate()));
+                    if(dateFormat.format(exercicesList.get(j).getExerciseDate()).equals(exerciseDat)){
+                        counter++;
+                    }
                 }
+                data.add(new ValueDataEntry(exerciseDat, counter));
             }
-            data.add(new ValueDataEntry(exerciseDat, counter));
         }
         totalWorkouts.setText(data.size()+"");
 
@@ -140,28 +146,17 @@ public class statistics extends AppCompatActivity {
 
         Column3d column = cartesian.column(data);
 
-        /**column.tooltip()
-                .titleFormat("{%X}")
-                .position(Position.CENTER_BOTTOM)
-                .anchor(EnumsAnchor.CENTER_BOTTOM)
-                .offsetX(0d)
-                .offsetY(5d)
-                .format("${%Value}{groupsSeparator: }");
-
-        cartesian.animation(true);
-        cartesian.title("Top 10 Cosmetic Products by Revenue");
-
-        cartesian.yScale().minimum(0d);
-
-        cartesian.yAxis(0).labels().format("${%Value}{groupsSeparator: }");
-
-        cartesian.tooltip().positionMode(TooltipPositionMode.POINT);
-        cartesian.interactivity().hoverMode(HoverMode.BY_X);
-
-        cartesian.xAxis(0).title("Product");
-        cartesian.yAxis(0).title("Revenue");**/
-
         anyChartView.setChart(cartesian);
 
+    }
+    private void loadData(){
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("trackingExercice", null);
+        Type type = new TypeToken<ArrayList<NewExercise>>() {}.getType();
+        exercicesList = gson.fromJson(json, type);
+        if (exercicesList == null) {
+            exercicesList = new ArrayList<>();
+        }
     }
 }
