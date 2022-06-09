@@ -3,14 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".tracking">
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="348dp"
         android:layout_height="318dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/rectangle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
@@ -19,92 +20,109 @@
         android:id="@+id/textView17"
         android:layout_width="57dp"
         android:layout_height="19dp"
+        android:layout_marginStart="-640dp"
+        android:layout_marginTop="-140dp"
         android:text="Set"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="54dp"
-        tools:layout_editor_absoluteY="376dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <TextView
         android:id="@+id/textView16"
         android:layout_width="81dp"
         android:layout_height="25dp"
+        android:layout_marginStart="-340dp"
+        android:layout_marginTop="-210dp"
         android:text="Repitition"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="54dp"
-        tools:layout_editor_absoluteY="311dp" />
+        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <EditText
         android:id="@+id/editTextNumber2"
         android:layout_width="182dp"
         android:layout_height="40dp"
+        android:layout_marginStart="-210dp"
+        android:layout_marginTop="16dp"
         android:hint="1"
         android:inputType="number"
-        tools:layout_editor_absoluteX="162dp"
-        tools:layout_editor_absoluteY="366dp" />
+        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
 
     <EditText
         android:id="@+id/editTextNumber"
         android:layout_width="182dp"
         android:layout_height="40dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="30dp"
         android:hint="1"
         android:inputType="number"
-        tools:layout_editor_absoluteX="162dp"
-        tools:layout_editor_absoluteY="304dp" />
+        app:layout_constraintStart_toEndOf="@+id/textView16"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="414dp"
         android:layout_height="84dp"
+        android:layout_marginBottom="68dp"
         android:background="@drawable/rectangle"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="-4dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView12"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
         android:text="Crunches"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="31dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="143dp"
-        android:layout_marginBottom="555dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginBottom="33dp"
         android:text="let’s practice this exercice!"
         android:textColor="#396D93"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/textView13"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
+        android:id="@+id/editText"
         android:layout_width="182dp"
         android:layout_height="40dp"
+        android:layout_marginStart="-210dp"
+        android:layout_marginTop="-276dp"
         android:hint="Kg"
         android:inputType="number"
-        tools:layout_editor_absoluteX="162dp"
-        tools:layout_editor_absoluteY="244dp" />
+        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <TextView
         android:id="@+id/textView15"
-        android:layout_width="63dp"
+        android:layout_width="0dp"
         android:layout_height="22dp"
+        android:layout_marginTop="-280dp"
+        android:layout_marginEnd="320dp"
         android:text="Weight"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="54dp"
-        tools:layout_editor_absoluteY="253dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <Button
         android:id="@+id/button"
@@ -116,4 +134,5 @@
         android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextNumber2" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
