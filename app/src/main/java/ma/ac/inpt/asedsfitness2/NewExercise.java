@@ -5,12 +5,12 @@ import java.util.Date;
 public class NewExercise {
     private String title;
     private String category;
-    private double weight;
+    private Double weight;
     private int repetitions;
     private int sets;
     private Date exerciseDate;
 
-    public NewExercise(String title, String category, double weight, int repetitions, int sets, Date exerciseDate) {
+    public NewExercise(String title, String category, Double weight, int repetitions, int sets, Date exerciseDate) {
         this.title = title;
         this.category = category;
         this.weight = weight;
@@ -35,11 +35,11 @@ public class NewExercise {
         this.category = category;
     }
 
-    public double getWeight() {
+    public Double getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(Double weight) {
         this.weight = weight;
     }
 
