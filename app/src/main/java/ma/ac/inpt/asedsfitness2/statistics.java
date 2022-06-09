@@ -2,8 +2,10 @@ package ma.ac.inpt.asedsfitness2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.anychart.anychart.AnyChart;
 import com.anychart.anychart.AnyChartView;
@@ -36,35 +38,43 @@ public class statistics extends AppCompatActivity {
         setContentView(R.layout.activity_statistics);
 
         //date format
-        /**DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         Calendar cal = Calendar.getInstance();
         Date date = cal.getTime();
-        String todaysdate = dateFormat.format(date);*/
+        String todaysdate = dateFormat.format(date);
+        Date anotherDate=new Date() ;
 
-        /**NewExercise firstExercise=new NewExercise("crunches","abs",20.00,20,3,date);
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, todaysdate, duration);
+        toast.show();
+        NewExercise firstExercise=new NewExercise("crunches","abs",20.00,20,3,date);
         NewExercise secondExercise=new NewExercise("bench press","chest",20.00,20,3,date);
         NewExercise thirdExercise=new NewExercise("squat","legs",20.00,20,3,date);
         NewExercise fourthExercise=new NewExercise("shoulders press","shoulder",20.00,20,3,date);
-        NewExercise fifthExercise=new NewExercise("crunches","abs",20.00,20,3,date);*/
+        NewExercise fifthExercise=new NewExercise("crunches","abs",20.00,20,3,date);
 
 
-        /**exercicesList.add(firstExercise);
+        exercicesList.add(firstExercise);
         exercicesList.add(secondExercise);
         exercicesList.add(thirdExercise);
         exercicesList.add(fourthExercise);
-        exercicesList.add(fifthExercise);*/
+        exercicesList.add(fifthExercise);
 
         totalExercises=findViewById(R.id.exercises_number);
         totalRepititions=findViewById(R.id.repetitions_number);
         totalCalories=findViewById(R.id.calories_counter);
         totalWorkouts=findViewById(R.id.workouts_number);
 
+
+
         //first chart (pie chart)
         Pie pie = AnyChart.pie();
 
         List<DataEntry> pieData = new ArrayList<>();
 
-        /**int repitionsCounter=0;
+        int repitionsCounter=0;
         for(int i=0;i<exercicesList.size();i++){
 
             //increment repitions counter
@@ -84,15 +94,15 @@ public class statistics extends AppCompatActivity {
             pieData.add(new ValueDataEntry(category, counter));
         }
         //set repitionsCounter to total repitions text
-        totalRepititions.setText(repitionsCounter);
-        totalExercises.setText(exercicesList.size());
-        totalCalories.setText(repitionsCounter*10);*/
+        totalRepititions.setText(repitionsCounter+"");
+        totalExercises.setText(exercicesList.size()+"");
+        totalCalories.setText(repitionsCounter*10+"");
 
-        pieData.add(new ValueDataEntry("Chest", 2));
+        /**pieData.add(new ValueDataEntry("Chest", 2));
         pieData.add(new ValueDataEntry("Shoulders", 3));
         pieData.add(new ValueDataEntry("Back", 1));
         pieData.add(new ValueDataEntry("legs", 5));
-        pieData.add(new ValueDataEntry("ABS", 1));
+        pieData.add(new ValueDataEntry("ABS", 1));*/
         pie.data(pieData);
         AnyChartView touchedBodyParts = (AnyChartView) findViewById(R.id.body_parts_pie);
         touchedBodyParts.setChart(pie);
@@ -107,25 +117,26 @@ public class statistics extends AppCompatActivity {
 
         List<DataEntry> data = new ArrayList<>();
 
-        /**for(int i=0;i<exercicesList.size();i++){
+        for(int i=0;i<exercicesList.size();i++){
             int counter=0;
             Date exerciseDate=exercicesList.get(i).getExerciseDate();
+            String exerciseDat = dateFormat.format(exerciseDate);
             for(int j=0;j<exercicesList.size();j++){
-                if(exercicesList.get(j).getExerciseDate().equals(exerciseDate)){
+                if(dateFormat.format(exercicesList.get(j).getExerciseDate()).equals(exerciseDat)){
                     counter++;
                 }
             }
-            data.add(new ValueDataEntry(exerciseDate.toString(), counter));
+            data.add(new ValueDataEntry(exerciseDat, counter));
         }
-        totalWorkouts.setText(data.size());*/
+        totalWorkouts.setText(data.size()+"");
 
-        data.add(new ValueDataEntry("monday", 80540));
+        /**data.add(new ValueDataEntry("monday", 80540));
         data.add(new ValueDataEntry("Thursday", 94190));
         data.add(new ValueDataEntry("Wednesday", 102610));
         data.add(new ValueDataEntry("tuesday", 110430));
         data.add(new ValueDataEntry("Friday", 128000));
         data.add(new ValueDataEntry("saturday", 143760));
-        data.add(new ValueDataEntry("sunday", 170670));
+        data.add(new ValueDataEntry("sunday", 170670));*/
 
         Column3d column = cartesian.column(data);
 
