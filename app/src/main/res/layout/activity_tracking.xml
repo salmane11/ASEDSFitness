@@ -107,7 +107,7 @@
         android:layout_marginStart="-210dp"
         android:layout_marginTop="-276dp"
         android:hint="Kg"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         app:layout_constraintStart_toEndOf="@+id/textView13"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
