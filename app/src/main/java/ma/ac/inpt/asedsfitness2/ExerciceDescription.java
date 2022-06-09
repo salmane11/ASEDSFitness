@@ -1,4 +1,13 @@
 package ma.ac.inpt.asedsfitness2;
 
-public class ExerciceDescription {
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+
+public class ExerciceDescription  extends AppCompatActivity{
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_description);
+    }
 }
